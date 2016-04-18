@@ -1,0 +1,27 @@
+package cose.seu.test;
+
+import cose.seu.entity.UserInfo;
+import cose.seu.dao.*;
+import cose.seu.dao.impl.*;
+
+import java.util.*;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
+public class UserInfoTest {
+
+	
+	
+	public static void main(String[] args)
+	{
+		UserInfo user1=new UserInfo();
+		//user.setAge((long)12);
+		UserManagerDao userdao=new UserManagerDaoImpl();
+		System.out.print(userdao.findById((long)1).getAge());
+		
+		
+	}
+	
+
+}	
+	

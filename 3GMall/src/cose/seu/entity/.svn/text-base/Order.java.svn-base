@@ -1,0 +1,224 @@
+package cose.seu.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+public class Order implements Serializable {
+	/**
+	 * @author Jossion
+	 * 
+	 */
+	private static final long serialVersionUID = 5L;
+	
+	private Long oid;
+	private Long ordid;
+	private UserInfo user;
+	private RecAddr addr;
+	private String invContent;
+	private float tolPrice;
+	private float postage;
+	private Date ordDate;
+	private String state;
+	private Set<OrderItem> orderItem;
+
+	//enum State {
+		//UNPAID, PAID, WAITING_SSEND, OUT_STOTAGE, SENDING, WAITING_RECIVE, FINISH, CANCLED
+	//}
+
+	public Order(Long oid, Long ordid, UserInfo user, RecAddr addr,
+			String invContent, float tolPrice, float postage, Date ordDate,
+			String state, Set<OrderItem> orderItem) {
+		super();
+		this.oid = oid;
+		this.ordid = ordid;
+		this.user = user;
+		this.addr = addr;
+		this.invContent = invContent;
+		this.tolPrice = tolPrice;
+		this.postage = postage;
+		this.ordDate = ordDate;
+		this.state = state;
+		this.orderItem = orderItem;
+	}
+
+	public Order() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Long getOid() {
+		return oid;
+	}
+
+	public void setOid(Long oid) {
+		this.oid = oid;
+	}
+
+	public Long getOrdid() {
+		return ordid;
+	}
+
+	public void setOrdid(Long ordid) {
+		this.ordid = ordid;
+	}
+
+	public UserInfo getUser() {
+		return user;
+	}
+
+	public void setUser(UserInfo user) {
+		this.user = user;
+	}
+
+	public RecAddr getAddr() {
+		return addr;
+	}
+
+	public void setAddr(RecAddr addr) {
+		this.addr = addr;
+	}
+
+
+	public String getInvContent() {
+		return invContent;
+	}
+
+	public void setInvContent(String invContent) {
+		this.invContent = invContent;
+	}
+
+
+	public float getTolPrice() {
+		return tolPrice;
+	}
+
+	public void setTolPrice(float tolPrice) {
+		this.tolPrice = tolPrice;
+	}
+
+	public float getPostage() {
+		return postage;
+	}
+
+	public void setPostage(float postage) {
+		this.postage = postage;
+	}
+
+	public Date getOrdDate() {
+		return ordDate;
+	}
+
+	public void setOrdDate(Date ordDate) {
+		this.ordDate = ordDate;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public Set<OrderItem> getOrderItem() {
+		return orderItem;
+	}
+
+	public void setOrderItem(Set<OrderItem> orderItem) {
+		this.orderItem = orderItem;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Order [OID=" + oid + ", ordid=" + ordid + ", User=" + user
+				+ ", Addr=" + addr + ", InvContent=" + invContent
+				+ ", TolPrice=" + tolPrice + ", Postage=" + postage
+				+ ", OrdDate=" + ordDate + ", state=" + state + ", orderItem="
+				+ orderItem + "]";
+	}
+
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((addr == null) ? 0 : addr.hashCode());
+//		result = prime * result
+//				+ ((invContent == null) ? 0 : invContent.hashCode());
+//		result = prime * result + ((oid == null) ? 0 : oid.hashCode());
+//		result = prime * result + ((ordDate == null) ? 0 : ordDate.hashCode());
+//		result = prime * result + ((ordid == null) ? 0 : ordid.hashCode());
+//		result = prime * result + Float.floatToIntBits(postage);
+//		result = prime * result + Float.floatToIntBits(tolPrice);
+//		result = prime * result + ((user == null) ? 0 : user.hashCode());
+//		result = prime * result
+//				+ ((orderItem == null) ? 0 : orderItem.hashCode());
+//		result = prime * result + ((state == null) ? 0 : state.hashCode());
+//		return result;
+//	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		if (addr == null) {
+			if (other.addr != null)
+				return false;
+		} else if (!addr.equals(other.addr))
+			return false;
+		if (invContent == null) {
+			if (other.invContent != null)
+				return false;
+		} else if (!invContent.equals(other.invContent))
+			return false;
+		if (oid == null) {
+			if (other.oid != null)
+				return false;
+		} else if (!oid.equals(other.oid))
+			return false;
+		if (ordDate == null) {
+			if (other.ordDate != null)
+				return false;
+		} else if (!ordDate.equals(other.ordDate))
+			return false;
+		if (ordid == null) {
+			if (other.ordid != null)
+				return false;
+		} else if (!ordid.equals(other.ordid))
+			return false;
+		if (Float.floatToIntBits(postage) != Float
+				.floatToIntBits(other.postage))
+			return false;
+		if (Float.floatToIntBits(tolPrice) != Float
+				.floatToIntBits(other.tolPrice))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		if (orderItem == null) {
+			if (other.orderItem != null)
+				return false;
+		} else if (!orderItem.equals(other.orderItem))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
+		return true;
+	}
+
+	
+
+	
+
+	
+}

@@ -1,0 +1,84 @@
+function Menu(theform,menuid) {
+/*---------------------------------------------------------------------------*\
+* 1.鍙橀噺瀹氫箟 *
+/*---------------------------------------------------------------------------*/
+
+//瀹氫箟鑿滃崟绾у埆MenuClass,鑿滃崟闀垮害鏁扮粍MenuLenArr,鑿滃崟鍚嶇О鏁扮粍MenuArr,涓嬬骇鑿滃崟鏁扮粍SubMenuArr锛岃彍鍗旾D鏁扮粍MenuIdArr
+var MenuClass,MenuLenArr,MenuArr,SubMenuArr,MenuIdArr
+
+//瀹氫箟鍒嗛殧绗︼細splitchar1,splitchar2
+var splitchar1,splitchar2
+
+//瀹氫箟涓存椂鏁扮粍,瀛愭暟缁�鏁扮粍闀垮害,
+var arr,subarr,arrlen
+
+/*---------------------------------------------------------------------------*\
+* 2.鍙橀噺璧嬪� *
+/*---------------------------------------------------------------------------*/
+MenuArr=new Array()
+MenuLenArr=new Array()
+SubMenuArr=new Array()
+MenuIdArr=new Array()
+
+MenuArr[1]="欧洲|||亚洲|||非洲|||大洋洲|||北美洲|||南美洲" //洲名|||...
+MenuArr[2]="欧洲###德国|||欧洲###法国|||北美洲###美国|||北美洲###加拿大|||亚洲###中国" //洲名###国名|||...
+MenuArr[3]="中国###北京|||中国###上海|||美国###华盛顿|||美国###纽约|||德国###柏林" //国名###城市名|||...
+MenuArr[4]="北京###朝阳区|||上海###徐汇区|||广州###天河区|||纽约###曼哈顿区" //国名###城市名|||...
+
+MenuIdArr[1]="zhou"
+MenuIdArr[2]="guo"
+MenuIdArr[3]="shi"
+MenuIdArr[4]="qu"
+MenuClass=4 
+
+splitchar1="|||";
+splitchar2="###";
+
+/*---------------------------------------------------------------------------*\
+* 3.鐢熸垚鏁扮粍 *
+/*---------------------------------------------------------------------------*/
+for(iii=1;iii<=MenuClass;iii++)
+{
+arr=MenuArr[iii].split(splitchar1);
+len=arr.length;
+subarr=new Array()
+for (i=0;i<len;i++)
+{
+subarr[i]=arr[i].split(splitchar2);
+}
+len=subarr.length;
+SubMenuArr[iii]=subarr
+MenuLenArr[iii]=len
+}
+
+//============鏇存敼涓嬬骇鑿滃崟======================
+var self,submenu,thislen,thisarr
+//self鏈骇鑿滃崟
+//submenu瀛愯彍鍗�
+//theform:鎵�湪琛ㄥ崟瀵硅薄[type:object]
+//menuid:鏈骇鑿滃崟绾у埆ID锛屽1绾ц彍鍗曞垯涓�
+self=eval("document."+theform.name+"."+MenuIdArr[menuid])
+submenu=eval("document."+theform.name+"."+MenuIdArr[menuid+1])
+thislen=MenuLenArr[menuid+1]
+thisarr=SubMenuArr[menuid+1]
+submenu.length=0
+submenu.options.add(new Option( "-----请选择----",""));
+for (i=0;i<thislen;i++)
+{
+if (thisarr[i][0] == self.value)
+{
+submenu.options.add(new Option(thisarr[i][1], thisarr[i][1]));
+}
+}
+submenu.options[0].selected=true
+
+//============鏇存敼涓嬬骇浠ヤ笅鑿滃崟==============
+var kkk
+for(kkk=menuid+2;kkk<=MenuClass;kkk++)
+{
+submenu=eval("document."+theform.name+"."+MenuIdArr[kkk])
+submenu.length=0
+submenu.options.add(new Option( "------请选择----",""));
+submenu.options[0].selected=true
+}
+}

@@ -1,0 +1,133 @@
+﻿<%@page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<%@page import="cose.seu.entity.*"%>
+<%
+	String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<%
+	List<String> paymentList=new ArrayList<String>();
+	paymentList.add("");
+	paymentList.add("在线支付");
+	paymentList.add("货到付款");
+	paymentList.add("积分支付"); 
+	request.setAttribute("paymentList", paymentList);
+%>
+
+<html>
+<head>
+<title>ordering</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="i.magetoolbar" content="no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link href="css/ordering.css" type="text/css" rel="stylesheet">
+<%
+	//if(request.getAttribute("T_flag")==null) 
+  // response.sendRedirect("load.action");
+%>
+
+</style>
+<script language="javascript" src="js/hpmenu.js"></script>
+</head>
+
+<body>
+	<s:form id="container1">
+		<s:div id="title"></s:div>
+	</s:form>
+
+	<s:form id="container2">
+		<s:div id="parting1"></s:div>
+		<s:div id="subtitle1">购买的商品</s:div>
+
+		<table id="table">
+			<s:iterator id="shoppingList" value="shoppingLists">
+				<tr style="height:25px;">
+					<th class="th" style="width:380px;">《${shoppingList.book.bName}》</th>
+					<th class="th" style="width:380px;">数量：${shoppingList.bnumber}</th>
+					<th class="th" style="width:200px;">￥${shoppingList.book.price}</th>
+				</tr>
+			</s:iterator>
+		</table>
+
+		<s:div id="parting3"></s:div>
+		<s:div id="total" name="total">合计：￥${tolPrice}</s:div>
+
+	</s:form>
+
+	<s:form id="container3" action="submit">
+		<s:div id="parting2"></s:div>
+		<s:div id="parting4"></s:div>
+		<s:div id="subtitle2">收货人信息填写</s:div>
+		<s:div id="subtitle3">收货人</s:div>
+
+		<s:div id="receiver">
+			<s:radio name="radio" list="receiverStringList" theme="simple"></s:radio>
+		</s:div>
+
+		<s:div id="phoneNum">电话</s:div>
+		<s:div id="reciveName">姓名</s:div>
+		<s:div id="reciveAddr">地址</s:div>
+		<s:div id="payment">支付方式</s:div>
+		<s:div id="invoiceTitle">发票抬头</s:div>
+
+		<s:textfield id="nameTxt" name="nameTxt"></s:textfield>
+		<s:textfield id="phoneTxt" name="phoneTxt"></s:textfield>
+		<s:textfield id="invoiceTxt" name="invoiceTxt"></s:textfield>
+
+		<select id="province" name="province" onChange="Menu(this.form,1);">
+			<option value="" selected>----------</option>
+			<option value='北京'>北京</option>
+			<option value='天津'>天津</option>
+			<option value='上海'>上海</option>
+			<option value='重庆'>重庆</option>
+			<option value='辽宁省'>辽宁省</option>
+			<option value='吉林省'>吉林省</option>
+			<option value='黑龙江省'>黑龙江省</option>
+			<option value='河北省'>河北省</option>
+			<option value='山西省'>山西省</option>
+			<option value='陕西省'>陕西省</option>
+			<option value='甘肃省'>甘肃省</option>
+			<option value='青海省'>青海省</option>
+			<option value='山东省'>山东省</option>
+			<option value='安徽省'>安徽省</option>
+			<option value='江苏省'>江苏省</option>
+			<option value='浙江省'>浙江省</option>
+			<option value='河南省'>河南省</option>
+			<option value='湖北省'>湖北省</option>
+			<option value='湖南省'>湖南省</option>
+			<option value='江西省'>江西省</option>
+			<option value='台湾省'>台湾省</option>
+			<option value='福建省'>福建省</option>
+			<option value='云南省'>云南省</option>
+			<option value='海南省'>海南省</option>
+			<option value='四川省'>四川省</option>
+			<option value='贵州省'>贵州省</option>
+			<option value='广东省'>广东省</option>
+			<option value='内蒙古自治区'>内蒙古自治区</option>
+			<option value='西藏自治区'>西藏自治区</option>
+			<option value='新疆维吾尔自治区'>新疆维吾尔自治区</option>
+			<option value='广西壮族自治区'>广西壮族自治区</option>
+			<option value='宁夏回族自治区'>宁夏回族自治区</option>
+			<option value='香港特别行政区'>香港特别行政区</option>
+			<option value='澳门特别行政区'>澳门特别行政区</option>
+		</select>
+		<select id="city" name="city" onChange="Menu(this.form,2);">
+			<option value="" selected>----------</option>
+		</select>
+		<select id="area" name="area" onChange="Menu(this.form,3);">
+			<option value="" selected>----------</option>
+		</select>
+		<script language="javascript">
+			Menu(eval("document.form1"), 1)
+		</script>
+		<s:textarea id="detaliedAddr" name="detaliedAddr"></s:textarea>
+		<s:select id="paymentWay" name="paymentWay"
+			list="%{#request.paymentList}"></s:select>
+
+		<s:submit id="submit" name="submit" value="" method="submit"></s:submit>
+		<s:submit id="giveUp" name="giveUp" value=""></s:submit>
+
+	</s:form>
+</body>
+</html>

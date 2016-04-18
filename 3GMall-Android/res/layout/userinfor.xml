@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:background="@drawable/back">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="146dp" >
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/userinfor_headpicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="51dp"
+       
+        android:layout_marginTop="26dp"
+        android:src="@drawable/head" />
+
+    <TextView
+        android:id="@+id/userinfor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/relativeLayout1"
+        android:layout_alignTop="@+id/userinfor_headpicture"
+        android:text="用户名 ：" />
+
+    <Button
+        android:id="@+id/getfinishedPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/relativeLayout1"
+        android:text="已完成订单" />
+
+    <TextView
+        android:id="@+id/userinfor_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/userinfor_name"
+        android:layout_below="@+id/userinfor_headpicture"
+        android:text="等级 ：" />
+
+    <Button
+        android:id="@+id/goToShoppingCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/relativeLayout1"
+        android:text="购物车" />
+
+    <Button
+        android:id="@+id/getunfinishedPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/goToShoppingCart"
+        android:layout_alignBottom="@+id/goToShoppingCart"
+        android:layout_toRightOf="@+id/goToShoppingCart"
+        android:text="未完成订单" />
+
+    <TextView
+        android:id="@+id/userinfor_name_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/userinfor_name"
+        android:layout_alignBottom="@+id/userinfor_name"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="22dp"
+        android:text="未获取" />
+
+    <TextView
+        android:id="@+id/userinfor_grade_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/userinfor_grade"
+        android:layout_alignLeft="@+id/userinfor_name_"
+        android:text="未获取" />
+
+    <Button
+        android:id="@+id/userinfor_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/userinfor_browseHistory"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="29dp"
+        android:text="银行卡管理" />
+
+    <Button
+        android:id="@+id/userinfor_mylike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/userinfor_card"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="我最喜爱的" />
+
+    <Button
+        android:id="@+id/userinfor_browseHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="38dp"
+        android:text="浏览历史" />
+
+</RelativeLayout>

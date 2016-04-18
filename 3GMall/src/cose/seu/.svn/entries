@@ -1,0 +1,46 @@
+8
+
+dir
+69
+https://lq:8443/svn/3GMall/3GMall/src/cose/seu
+https://lq:8443/svn/3GMall
+
+
+
+2013-09-03T11:14:52.781289Z
+69
+ky
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+c27c5132-2931-f04a-a7f8-4937bdb6b878
+
+action
+dir
+
+biz
+dir
+
+dao
+dir
+
+entity
+dir
+
+test
+dir
+
+util
+dir
+

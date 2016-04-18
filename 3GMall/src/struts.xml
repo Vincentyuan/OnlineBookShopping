@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<include file="cose/seu/action/BasicInfo_struts.xml"></include>
+	<include file="cose/seu/action/SC_struts.xml"></include>
+	<include file="cose/seu/action/Order_struts.xml"></include>
+	<include file="cose/seu/action/registerAndFindBack-struts.xml"></include>
+	<include file="cose/seu/action/CreditEdit_struts.xml"></include>
+	<constant name="structs.custom.i18n.resources" value="mess"/>
+	<constant name="struts.i18n.encoding" value="utf-8"/>
+	
+	
+	
+	<package name="home" extends="struts-default">
+		
+		<action name="*" class="cose.seu.action.SearchAction" method="{1}">
+			<result name="error">index.jsp</result>
+			<result name="success">type.jsp</result>
+			<result name="homepage">homepage.jsp</result>
+			<result name="homepagelog">homepagelog.jsp</result>
+			<result name="home" type="dispatcher">home.jsp</result>
+			<result name="bookinfo">bookinfo.jsp</result>
+			<result name="comme">comres.jsp</result>
+			
+		</action>
+		
+		
+	</package>
+	
+	
+</struts>    

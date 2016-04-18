@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/3GMall/!svn/ver/68/3GMall/src/cose/seu/dao
+END
+GeneraticDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/3GMall/!svn/ver/88/3GMall/src/cose/seu/dao/GeneraticDao.java
+END
+ShoppingCartDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/3GMall/!svn/ver/180/3GMall/src/cose/seu/dao/ShoppingCartDao.java
+END
+UserManagerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/3GMall/!svn/ver/79/3GMall/src/cose/seu/dao/UserManagerDao.java
+END
+FavoriteDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/3GMall/!svn/ver/162/3GMall/src/cose/seu/dao/FavoriteDao.java
+END
+BookDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/3GMall/!svn/ver/157/3GMall/src/cose/seu/dao/BookDao.java
+END
+OrderDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/3GMall/!svn/ver/141/3GMall/src/cose/seu/dao/OrderDao.java
+END

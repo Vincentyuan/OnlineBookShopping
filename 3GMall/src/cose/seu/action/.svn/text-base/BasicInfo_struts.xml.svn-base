@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <package name="cose.seu.action.BasicInfoaction" extends="struts-default">
+        <action name="list_binfo" class="cose.seu.action.BasicInfoaction" method="list_binfo">
+            <result name="tolist" >BasicInfo.jsp</result>
+        </action>
+        <action name="edit_binfo" class="cose.seu.action.BasicInfoaction" method="edit_binfo">
+            <result name="toedit">BasicInfoEdit.jsp</result>
+        </action>
+        <action name="update_binfo" class="cose.seu.action.BasicInfoaction" method="update_binfo">
+            <result name="backlist" type="redirectAction">list_binfo.action</result>
+        </action>
+        <action name="list_upage" class="cose.seu.action.BasicInfoaction" method="list_upage">
+            <result name="toupage" >userpage1.jsp</result>
+        </action>
+        <!--<action name="list_order" class="cose.seu.action.BasicInfoaction" method="list_order">
+            <result name="list_order">orderdone.jsp</result>
+        </action>
+        <action name="detail_order" class="cose.seu.action.BasicInfoaction" method="list_basicinfoedit">
+            <result name="list_basic">BasicInfoEdit.jsp</result>
+        </action>
+        <action name="delete_order" class="cose.seu.action.BasicInfoaction" method="delete_order">
+            <result name="delete_order" type="redirectAction">delete_order.action</result>
+        </action>
+         <action name="list_recaddr" class="cose.seu.action.BasicInfoaction" method="list_recaddr">
+            <result name="list_recaddr">RecAdd.jsp</result>
+        </action>
+        <action name="add_recaddr" class="cose.seu.action.BasicInfoaction" method="add_recaddr">
+            <result name="add_recaddr">RecAddedit.jsp</result>
+        </action>
+        <action name="delete_recaddr" class="cose.seu.action.BasicInfoaction" method="delete_recaddr">
+            <result name="delete_recaddr" type="redirectAction">list_recaddr.action</result>
+        </action>
+        <action name="save_recaddr" class="cose.seu.action.BasicInfoaction" method="save_recaddr">
+            <result name="save_recaddr" type="redirectAction">list_recaddr.action</result>
+        </action>
+          -->
+    </package>
+
+
+</struts>

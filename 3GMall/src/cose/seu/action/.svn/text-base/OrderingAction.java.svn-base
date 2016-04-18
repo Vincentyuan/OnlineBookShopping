@@ -1,0 +1,347 @@
+package cose.seu.action;
+
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
+import cose.seu.dao.BookDao;
+import cose.seu.dao.OrderDao;
+import cose.seu.dao.ShoppingCartDao;
+import cose.seu.dao.UserManagerDao;
+import cose.seu.dao.impl.BookDaoImpl;
+import cose.seu.dao.impl.OrderDaoImpl;
+import cose.seu.dao.impl.ShoppingCartDaoimpl;
+import cose.seu.dao.impl.UserManagerDaoImpl;
+import cose.seu.entity.Book;
+import cose.seu.entity.City;
+import cose.seu.entity.Order;
+import cose.seu.entity.OrderItem;
+import cose.seu.entity.RecAddr;
+import cose.seu.entity.ShoppingList;
+import cose.seu.entity.UserInfo;
+
+public class OrderingAction{
+    private List<Book> bookList=new ArrayList<Book>();
+    private List<Long> bNumber=new ArrayList<Long>();
+    private List<ShoppingList> shoppingLists=new ArrayList<ShoppingList>();
+    private long tolPrice;
+    private RecAddr addr;
+    private Order order;
+    private UserInfo user;
+    private String nameTxt=null;
+    private String phoneTxt;
+    private String invoiceTxt=null;
+    private String detaliedAddr=null;
+    private String province;
+    private String city;
+    private String area;
+    private String paymentWay=null;
+    private String radio;
+    private List<String> laddr;
+    
+    public List<String> getLaddr() {
+		return laddr;
+	}
+
+	public void setLaddr(List<String> laddr) {
+		this.laddr = laddr;
+	}
+
+	private Set<OrderItem> orderItems;
+    //private List<String> paymentList;
+    private static long No=1;
+    
+    private long bid;
+    private long bookNumber=0;
+
+	public String load() {	
+		
+        HttpSession s = ServletActionContext.getRequest().getSession(true);
+        UserManagerDao ud = new UserManagerDaoImpl();
+        UserInfo usert = ud.findById(240l);
+        s.setAttribute("u", usert);
+		user = (UserInfo) s.getAttribute("u");
+		//user=new UserInfo();
+		//user.setUserName("nni");
+		String a1 = "sss";
+		String a2 = "aaa";
+		laddr=new ArrayList<String>();
+		laddr.add(a1);
+		laddr.add(a2);
+		System.out.println(laddr);
+		//s.setAttribute("laddr", laddr);
+		BookDao bookDao=new BookDaoImpl();
+		Book book=bookDao.findBookById(bid);
+		bookList.add(book);
+		bNumber.add(bookNumber);
+		ShoppingList lists=new ShoppingList();
+	    lists.setBook(bookList.get(0));
+	    lists.setBnumber(bNumber.get(0));
+	    //System.out.println(bNumber.get(0));
+	    shoppingLists.add(lists);
+	    setTolPrice();
+
+		return "success";
+	}
+	
+	public String settleAccount(){
+		//ShoppingCartDao dao = new ShoppingCartDaoimpl();
+		HttpSession s = ServletActionContext.getRequest().getSession(true);
+		user = (UserInfo) s.getAttribute("user");
+		BookDao bdao = new BookDaoImpl();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String[] checkbox = request.getParameterValues("checkbox"); 
+		if(checkbox!=null){
+		    for(int i=0;i<checkbox.length;i++){
+			    bookList.add(bdao.findBookByName(checkbox[i]));//
+			    //System.out.println(bookList.get(i).getbName());
+			    //System.out.println("22222");
+			    bNumber.add(Long.parseLong(request.getParameter(bookList.get(i).getbName())));
+			    ShoppingList lists=new ShoppingList();
+			    lists.setBook(bookList.get(i));
+			    lists.setBnumber(bNumber.get(i));
+			    System.out.println(bNumber.get(i));
+			    shoppingLists.add(lists);
+		    }
+		}
+		setTolPrice();
+		return "success";
+	}
+	
+	
+	public String submit(){
+		//System.out.println(province+city+area);
+		//System.out.println(paymentWay);
+		//System.out.println(province);
+		//setTolPrice();
+		//setTolPrice();
+		//System.out.println(tolPrice);
+		setAddr();
+		setOrder();
+		return "success";
+	}
+
+	public String giveUp(){
+		return "success";
+	}
+	
+	public List<Book> getBookList() {
+		return bookList;
+	}
+
+	public void setBookList(List<Book> bookList) {
+		this.bookList=bookList;
+	}
+
+	public long getTolPrice() {
+		return tolPrice;
+	}
+
+	public void setTolPrice() {
+		Iterator<Book> bookIterator=bookList.iterator();
+		Iterator<Long> numIterator=bNumber.iterator();
+		while(bookIterator.hasNext()&&numIterator.hasNext()){
+			tolPrice+=bookIterator.next().getPrice()*numIterator.next();
+		}
+	}
+
+	public RecAddr getAddr() {
+		return addr;
+	}
+
+	public void setAddr() {
+		addr=new RecAddr();
+		addr.setRecName(nameTxt);
+		System.out.println(phoneTxt==null?"T":"F");
+		//addr.setRecPhone(Long.parseLong(phoneTxt));
+		addr.setPostcode(222001l);
+		addr.setStreet(province+city+area+detaliedAddr);
+		addr.setUser(user);
+		SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
+		Session session=sessionFactory.openSession();
+		Transaction transaction=session.beginTransaction();
+		session.save(addr);
+		transaction.commit();
+		session.close();
+		sessionFactory.close();				
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder() {
+		//System.out.print("tol..."+tolPrice);
+		order=new Order();
+		orderItems=new HashSet<OrderItem>();
+		Iterator<Book> iterator=bookList.iterator();
+		while(iterator.hasNext()){
+			OrderItem tempOrderItem=new OrderItem();
+			tempOrderItem.setOrder(order);
+			tempOrderItem.setBook(iterator.next());
+			tempOrderItem.setIsbn(100100100l);
+			orderItems.add(tempOrderItem);	
+		}
+		order.setOrderItem(orderItems);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+		String orderDate=sdf.format(new Date());
+		long orderNum=Long.parseLong(orderDate)*10000+No++;
+		order.setPostage(10l);
+		order.setTolPrice(tolPrice);
+		order.setInvContent(invoiceTxt);
+		order.setOrdDate(new Date());
+		order.setOrdid(orderNum);
+		order.setState("waiting");
+		order.setAddr(addr);
+		order.setUser(user);
+		OrderDao dao=new OrderDaoImpl();
+		dao.saveOrder(order);
+		dao.closeSession();
+	}
+
+	public String getNameTxt() {
+		return nameTxt;
+	}
+
+	public void setNameTxt(String nameTxt) {
+		this.nameTxt = nameTxt;
+	}
+
+	public String getPhoneTxt() {
+		return phoneTxt;
+	}
+
+	public void setPhoneTxt(String phoneTxt) {
+		    this.phoneTxt = phoneTxt;
+	}
+
+	public String getInvoiceTxt() {
+		return invoiceTxt;
+	}
+
+	public void setInvoiceTxt(String invoiceTxt) {
+		this.invoiceTxt = invoiceTxt;
+	}
+
+	public String getDetaliedAddr() {
+		return detaliedAddr;
+	}
+
+	public void setDetaliedAddr(String detaliedAddr) {
+		this.detaliedAddr = detaliedAddr;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public String getPaymentWay() {
+		return paymentWay;
+	}
+
+	public void setPaymentWay(String paymentWay) {
+		this.paymentWay = paymentWay;
+	}
+    
+	
+	
+//	public void setPayment(){
+//		paymentList=new ArrayList<String>();
+//		paymentList.add("");
+//		paymentList.add("zaixianzhifu");
+//		paymentList.add("huodaofukuan");
+//		paymentList.add("mianfeivip"); 
+//		HttpServletRequest request = ServletActionContext.getRequest();
+//	    request.setAttribute("paymentList", paymentList);
+//	}
+	
+	public String getRadio() {
+		return radio;
+	}
+
+	public void setRadio(String radio) {
+		this.radio = radio;
+	}
+
+	public List<ShoppingList> getShoppingLists() {
+		return shoppingLists;
+	}
+
+	public void setShoppingLists(List<ShoppingList> shoppingLists) {
+		this.shoppingLists = shoppingLists;
+	}
+
+	public List<Long> getbNumber() {
+		return bNumber;
+	}
+
+	public void setbNumber(List<Long> bNumber) {
+		this.bNumber = bNumber;
+	}
+
+	public long getBid() {
+		return bid;
+	}
+
+	public void setBid(long bid) {
+		this.bid = bid;
+	}
+
+	public long getBookNumber() {
+		return bookNumber;
+	}
+
+	public void setBookNumber(long bookNumber) {
+		this.bookNumber = bookNumber;
+	}
+
+	public UserInfo getUser() {
+		return user;
+	}
+
+	public void setUser(UserInfo user) {
+		this.user = user;
+	}
+
+	
+    
+}

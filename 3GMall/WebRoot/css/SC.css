@@ -1,0 +1,130 @@
+@charset "utf-8";
+#SC_title {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	background-image: url(../ima/title.png);
+	background-repeat:no-repeat;
+	height: 64px;
+}
+img {max-width:100%;
+	border-width: 0px;}
+/*#SC_sum {
+	height: 34px;
+	width: 100%;
+	position: relative;
+	left: 0px;
+	top: 0px;
+}*/
+
+#SC_pay {
+	background-image: url(../ima/pay.png);
+	background-repeat: no-repeat;
+	height: 100px;
+	width: 100px;
+	position: relative;
+	left: 80px;
+	top: 0px;
+}
+#del {
+	background-image: url(../ima/del.png);
+	background-repeat: no-repeat;
+	position: relative;
+	left: 0px;
+	top: 0px;
+	height:100px;
+	width: 100px;
+}
+#SC_compare {
+	background-image: url(../ima/buy.png);
+	background-repeat: no-repeat;
+	position: relative;
+	height: 100px;
+	width: 100px;
+	left: 0px;
+	top: 0px;
+}
+#SC_checkbox {
+	position: relative;
+	left: 50px;
+	top: 4px;
+	height: 34px;
+	width: 10px;
+	alignment-adjust: after-edge;
+}
+/*#SC_text {
+	position: relative;
+	left: 300px;
+	top: 3px;
+	width: 150px;
+	height: auto;
+	font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+	font-size: x-large;
+	font-style: normal;
+}*/
+#SC_increase {
+	background-image: url(../ima/increase.jpg);
+	background-repeat: no-repeat;
+	position: relative;
+	height: 34px;
+	width: 34px;
+	
+}
+#SC_reduce {
+	position: relative;
+	height: 34px;
+	width: 34px;
+	
+	background-image: url(../ima/reduce.jpg);
+	background-repeat: no-repeat;
+}
+#SC_number {
+	position: relative;
+	
+	height: 34px;
+	width: 45px;
+	font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+	font-size: x-large;
+	top: 0px;
+}
+/*
+#SC_price {
+	position: relative;
+	left: 800px;
+	top: 0px;
+	width: 100%;
+	height: 34px;
+	font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+	font-size: x-large;
+}*/
+#SC_sum_price {
+	position: relative;
+	left: 65%;
+	top: 0px;
+	height: 34px;
+	width: 100px;
+	font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+	font-size: x-large;
+	text-align: center;
+}
+#SC_buttomtable {
+	position: relative;
+	height: 159px;
+	width: 100%;
+}
+#SC_shoppinglisttable {
+	position: relative;
+	height: 180px;
+	width: 100%;
+}
+.ShoppingList {
+	position: relative;
+	left: 50px;
+	top: 0px;
+	height: 100px;
+	width: 100%;
+	font-family: "微软雅黑", Arial, Helvetica, sans-serif;
+	font-size: x-large;
+}
+a:link{color: #ffffff;}

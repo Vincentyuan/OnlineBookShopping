@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <display-name></display-name>	
+  <!--
+  <welcome-file-list>
+     <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  -->
+    <servlet>
+  		<servlet-name>LoginServlet</servlet-name>
+  		<servlet-class>cose.seu.action.servlet.LoginServlet</servlet-class>
+  
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>LoginServlet</servlet-name>
+  		<url-pattern>/LoginServlet</url-pattern>
+  
+  </servlet-mapping>
+  
+   <servlet>
+  		<servlet-name>BookListServlet</servlet-name>
+  		<servlet-class>cose.seu.action.servlet.BookListServlet</servlet-class>
+  
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>BookListServlet</servlet-name>
+  		<url-pattern>/BookListServlet</url-pattern>
+  
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  <servlet>
+  		<servlet-name>BookClassServlet</servlet-name>
+  		<servlet-class>cose.seu.action.servlet.BookClassServlet</servlet-class>
+  
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>BookClassServlet</servlet-name>
+  		<url-pattern>/BookClassServlet</url-pattern>
+  
+  </servlet-mapping>
+  
+  
+  <servlet>
+  		<servlet-name>BookdetailServlet</servlet-name>
+  		<servlet-class>cose.seu.action.servlet.BookdetailServlet</servlet-class>
+  
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>BookdetailServlet</servlet-name>
+  		<url-pattern>/BookdetailServlet</url-pattern>
+  
+  </servlet-mapping>
+  
+  
+   <servlet>
+  		<servlet-name>getPictureServLet</servlet-name>
+  		<servlet-class>cose.seu.action.servlet.getPictureServLet</servlet-class>
+  
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>getPictureServLet</servlet-name>
+  		<url-pattern>/getPictureServLet</url-pattern>
+  
+  </servlet-mapping>
+  
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <filter>
+  	<filter-name>struts2</filter-name>
+  	<filter-class><!--org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter  -->
+  		 org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+  	
+  	<init-param>
+  		<param-name>struts.action.extension</param-name>
+  		<param-value>action</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>struts2</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+ 
+  </web-app>

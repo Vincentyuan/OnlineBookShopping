@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="structs.custom.i18n.resources" value="mess" />
+	<constant name="struts.i18n.encoding" value="utf-8" />
+	<package name="main" extends="struts-default">
+
+		<action name="add" class="cose.seu.action.ShoppingManageAction"
+			method="add">
+			<result name="SCsuccess">ok.jsp
+			</result>
+		</action>
+		<action name="showShoppingCart" class="cose.seu.action.ShoppingManageAction"
+			method="show">
+			<result name="ShoppingCart">/ShoppingCart.jsp</result>
+			<result name="noBook">/index.jsp</result>
+		</action>
+		<action name="addtofav" class="cose.seu.action.ShoppingManageAction"
+			method="addtofav">
+			<result name="error" type="redirectAction">home.action</result>
+			<result name="fs">ok.jsp</result>
+		</action>
+		<action name="showfav" class="cose.seu.action.ShoppingManageAction" method="favshow">
+			<result name="error" type="redirectAction">home.action</result>
+			<result name="favsuccess">fav.jsp</result>
+		</action>
+		<action name="sumaction" class="cose.seu.action.ShoppingManageAction" method="sum">
+			<result name="total">res.jsp</result>
+		</action>
+		<action name="sldel" class="cose.seu.action.ShoppingManageAction" method="sldelete">
+			<result name="ShoppingCart">/ShoppingCart.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="fdel" class="cose.seu.action.ShoppingManageAction" method="favdelete">
+			<result name="favdel" type="redirectAction">/showfav.action</result>
+		</action>
+	</package>
+
+</struts> 

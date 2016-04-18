@@ -1,0 +1,61 @@
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@ taglib uri="/struts-tags" prefix="struts" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" href="css/SC.css" type="text/css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>购物车</title>
+<style type="text/css">
+<% if(request.getAttribute("SC")==null)
+{
+	response.sendRedirect("showShoppingCart.action");
+}
+%>
+</style>
+</head>
+<body>
+
+<div class="SC_title" id="SC_title"></div>
+<% int i=0; 
+
+%>
+<form action="settleAccount.action" method="post">
+	<!--struts:form id="compare" action="ShoppingManageAction"-->
+	<!--struts:action name="ShoppingManageAction"  -->
+<c:forEach items="${SCBook}" var="sl">
+		
+		<div class="ShoppingList" id="ShoppingList">
+        <table width="900"  height="192" border="0"> <tr> 
+   		    <td width="87"><input type="checkbox" name="checkbox" id="checkbox" value="${sl.bName}"/></td>
+          	<td width="500"><a href="index.jsp" style="text-decoration:none;color:#000"  id="SC_text" border="0px" >${sl.bName}</a></td>
+			<td width="34"><input type="button" style="border:0" name="SC_reduce" id="SC_reduce" size="" value="" onclick='if (document.getElementById("${sl.bName}").value>1){document.getElementById("${sl.bName}").value--;}' /></td>
+            <td width="45"><input id="${sl.bName}" name="${sl.bName}" type="text" value="1" size="4"/>
+            <td width="34"><input type="button"  style="border:0" name="SC_increase" id="SC_increase" value="" onclick='document.getElementById("${sl.bName}").value++' /></td>
+    		<td width="200" id="SC_price" style="color:#000;" name="SC_price">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${sl.price}</td>
+            </tr></table>
+	  	</div>
+	  	</c:forEach>
+
+  		<struts:div id="SC_sum_price" >${sumprice }</struts:div>
+        
+		<div class="SC_buttomd" id="SC_buttomd">
+        <table id=SC_buttomtable border="0"> <tr> <td width="48%-447px"></td>
+        <td width="149px"><input type="submit" style="border:0" name="SC_pay" id="SC_pay"  value="" onclick="window.location.href='settleAccount.action'"/></td> 
+        <td width="6%"></td>
+        <td width="149px"><a href="index.jsp" id="SC_buy"><img  src="ima/buy.jpg" border="0px"></a></td> 
+        <td width="6%"></td>
+        <td width="149px"><input name="SC_compare" type="submit" id="SC_compare" style="border:0" value="" onclick="window.location.href='addShoppingCart.action'"/></td>
+        <td width="40%"></td>
+        </tr> </table>
+        
+      </div> 	
+      </form>
+      <!--/struts:action-->
+	    	
+			
+
+<!--/struts:form-->
+</body>
+</html>

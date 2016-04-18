@@ -1,0 +1,67 @@
+8
+
+dir
+69
+https://lq:8443/svn/3GMall/3GMall/WebRoot/WEB-INF/classes
+https://lq:8443/svn/3GMall
+
+
+
+2013-09-02T10:45:44.942504Z
+1
+lq
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+c27c5132-2931-f04a-a7f8-4937bdb6b878
+
+applicationContext.xml
+file
+
+
+
+
+2013-09-02T12:01:22.206000Z
+a49d8cec7042826979e611ea3297d0cb
+2013-09-02T10:45:44.942504Z
+1
+lq
+
+cose
+dir
+
+hibernate.cfg.xml
+file
+
+
+
+
+2013-09-02T12:01:23.146000Z
+2c7d360bdad0c19d7c440988ca8a11ac
+2013-09-02T10:45:44.942504Z
+1
+lq
+
+struts.xml
+file
+
+
+
+
+2013-09-02T12:01:22.191000Z
+3ae89d3328e9e2f79f59472e614ebeaa
+2013-09-02T10:45:44.942504Z
+1
+lq
+

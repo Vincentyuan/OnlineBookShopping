@@ -1,0 +1,112 @@
+package cose.seu.dao;
+
+import java.util.List;
+import java.util.Set;
+
+import cose.seu.entity.Order;
+import cose.seu.entity.OrderItem;
+
+public interface OrderDao extends GeneraticDao<Order, Long>{
+	
+	/**
+	 * author Jossion
+	 */
+	
+	/*
+	 * 根据OID查找订单
+	 * @param oid为订单主键
+	 * @return Order对象
+	 */
+	public Order getOrder(long oid);
+	
+	/*
+	 * 根据OItID查找订单项
+	 * @param oitid为订单项主键
+	 * @return OrderItem对象 
+	 */
+	public OrderItem getOrderItem(long oitid);
+	
+	/*
+	 * 插入一条订单记录
+	 * @param order为一个订单对象
+	 * @return null
+	 */
+	public void saveOrder(Order order);
+	
+	/*
+	 * 插入一条订单项记录
+	 * @param orderItem为一个订单项对象
+	 * @return null
+	 */
+	//public void saveOrderItem(OrderItem orderItem);
+	
+	/*
+	 * 删除一条订单记录
+	 * @param order为一个订单对象
+	 * @return null
+	 */
+	public void deleteOrder(Order order);
+	
+	/*
+	 * 删除一条订单项记录
+	 * @param orderItem为一个订单项对象
+	 * @return null
+	 */
+	//public void deleteOrderItem(OrderItem orderItem);
+	
+	/*
+	 * 根据主键删除一条订单记录
+	 * @param oid为订单主键
+	 * @return null
+	 */
+	public void deleteOrder(long oid);
+	
+	/*
+	 * 根据主键删除一条订单项记录
+	 * @param oitid为订单项主键
+	 * @return null
+	 */
+	//public void deleteOrderItem(long oitid);
+	
+	/*
+	 * 查找所有订单记录
+	 * @param null
+	 * @return order订单对象列表
+	 */
+	public List<Order> searchOrder();
+	
+	/*
+	 * 查找所有订单项记录
+	 * @param null
+	 * @return orde订单项r对象列表
+	 */
+	public List<OrderItem> searchOrderItem();
+	
+	/*
+	 * 通过订单号查找订单
+	 * @param ordID为订单号
+	 * @return Order订单
+	 */
+	public Order findOrderByOrdID(long ordid);
+	//public List<OrderItem> findOrderItemByOID(Order order);
+	
+	/*
+	 * 通过订单主键查找订单项
+	 * @param oid为订单主键
+	 * @return OrderItem订单项列表
+	 */
+	public List<OrderItem> findOrderItemByOID(long oid);
+	
+	/*
+	 * 修改订单状态
+	 * @param oit为订单ID，state为要修改的订单状态
+	 * @return null
+	 */
+	public void changeState(long oit,String state);
+
+	/*
+	 * 关闭会话
+	 */
+	public void closeSession();
+}	
+	

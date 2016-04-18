@@ -1,0 +1,368 @@
+package cose.seu.action;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.apache.struts.action.Action;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import com.opensymphony.xwork2.ActionContext;
+
+import cose.seu.dao.BookDao;
+import cose.seu.dao.FavoriteDao;
+import cose.seu.dao.ShoppingCartDao;
+import cose.seu.dao.UserManagerDao;
+import cose.seu.dao.impl.BookDaoImpl;
+import cose.seu.dao.impl.FavoriteDaoImpl;
+import cose.seu.dao.impl.ShoppingCartDaoimpl;
+import cose.seu.dao.impl.UserManagerDaoImpl;
+import cose.seu.entity.Book;
+import cose.seu.entity.Favorite;
+import cose.seu.entity.ShoppingCart;
+import cose.seu.entity.ShoppingList;
+import cose.seu.entity.UserInfo;
+
+public class ShoppingManageAction{
+
+	
+	private List<ShoppingList> sll=new ArrayList<ShoppingList>();
+	private List<Long> bidl = new ArrayList<Long>();
+	
+	public static String[] bookid = {"book0","book1","book2","book3","book4"};
+	
+	private List<Book> SCBook=new ArrayList<Book>();
+	private List<Long> Bnumber=new ArrayList<Long>();
+	
+	private Book SLBook = new Book();
+	private UserInfo SLUser = new UserInfo();
+	private Book SLBook1 = new Book();
+	private Book SLBook2 = new Book();
+	private float sumprice=0;
+	
+	private Long bid;
+	
+
+	//***********************************************************
+	public void  add(){
+		HttpSession se = ServletActionContext.getRequest().getSession(true);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		SLUser = (UserInfo) se.getAttribute("user");
+		ShoppingCartDao dao= new ShoppingCartDaoimpl();
+		
+		Cookie cookie = null;
+		
+		Cookie cookies[] = request.getCookies();
+		
+		
+		
+		
+		if(SLUser==null){
+			if(cookies!=null){
+				int number = 0;
+				if(cookies.length>=5)return;
+				for(int j=0;j<cookies.length;++j){
+					for(int i=0;i<5;++i){
+						if(cookies[j].getName().equals(bookid[i])){
+							if(cookies[j].getValue().equals(bid)){
+								System.out.println("this book had been added.");
+								return;
+							}
+							number++;
+						}
+					}
+				}
+				cookie = new Cookie(bookid[number],bid.toString());
+				cookie.setPath(request.getContextPath());
+				cookie.setMaxAge(10000);
+				response.addCookie(cookie);
+			}
+			else{
+				cookie = new Cookie(bookid[0],bid.toString());
+				cookie.setPath(request.getContextPath());
+				cookie.setMaxAge(10000);
+				response.addCookie(cookie);
+			}
+			return;
+		}
+
+		ShoppingCart usc = dao.getShoppingCartbyUser(SLUser);
+		if(usc == null){
+			dao.addShoppingCart(SLUser);
+			SLUser.setShoppingCart(usc);
+			se.setAttribute("user", SLUser);
+		}
+
+		List<ShoppingList> slll = dao.getShoppingListSetbySCID(dao.getShoppingCartbyUser(SLUser).getSCID());
+		for(int i=0;i<slll.size();++i){
+			if(slll.get(i).getBook()==SLBook){
+				System.out.println("this book has added.");
+				return;
+			}
+		}
+		java.util.Date date = new Date();
+		dao.addShoppingList(1l, dao.getShoppingCartbyUser(SLUser), date, SLBook);
+	}
+	
+	
+	public String show(){
+		HttpSession se = ServletActionContext.getRequest().getSession(true);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		SLUser = (UserInfo) se.getAttribute("user");
+		
+		List<Book> bookl=new ArrayList<Book>();
+		
+		BookDao bdao = new BookDaoImpl();
+		
+		Cookie cookies[] = request.getCookies();
+		
+		request.setAttribute("SC",123);
+		
+		if(SLUser == null){
+			if(cookies!=null){
+				for(int i=0;i<cookies.length;++i){
+					bookl.add(bdao.findBookById(Long.getLong(cookies[i].getValue())));
+				}
+				SCBook = bookl;
+				
+			}
+			return "there is no book";
+		}
+		
+		ShoppingCartDao dao= new ShoppingCartDaoimpl();
+		sll = dao.getShoppingListSetbySCID(dao.getShoppingCartbyUser(SLUser).getSCID());
+		Iterator<ShoppingList> i = sll.iterator();
+		//System.out.println("11111");
+		while(i.hasNext()){
+			sumprice+=i.next().getBook().getPrice();
+			System.out.println(sumprice);
+			bookl.add(i.next().getBook());
+		}
+		SCBook = bookl;
+		
+		return "ShoppingCart";
+		
+	}
+/*
+	public String buy(){
+		ShoppingCartDao dao = new ShoppingCartDaoimpl();
+		BookDao bdao = new BookDaoImpl();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String[] checkbox = request.getParameterValues("checkbox"); 
+		if(checkbox!=null){
+			for(int i=0;i<checkbox.length;i++){
+				SCBook.add(bdao.findBookByName(checkbox[i]));//
+				System.out.println(SCBook.get(i).getbName());
+				System.out.println("22222");
+				Bnumber.add(Long.parseLong(request.getParameter(SCBook.get(i).getbName())));
+			}
+		}
+		return "success";
+	}
+	*/
+	public String clear(){
+		ShoppingCartDao dao= new ShoppingCartDaoimpl();
+		dao.deleteShoppingCartbyUser(SLUser);
+		return "ShoppingCart";
+	}
+	
+	public String sclogin(){
+		HttpSession se = ServletActionContext.getRequest().getSession(true);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		SLUser = (UserInfo) se.getAttribute("user");
+		
+		List<Book> bookl=new ArrayList<Book>();
+		
+		ShoppingCartDao dao= new ShoppingCartDaoimpl();
+		BookDao bdao = new BookDaoImpl();
+		Cookie cookies[] = request.getCookies();
+		if(cookies!=null){
+			for(int i=0;i<cookies.length;++i){
+				bookl.add(bdao.findBookById(Long.getLong(cookies[i].getValue())));
+			}
+			SCBook = bookl;
+		}
+			
+		List<ShoppingList> slll = dao.getShoppingListSetbySCID(dao.getShoppingCartbyUser(SLUser).getSCID());
+		for(int i=0;i<slll.size();i++){
+			for(int j=0;j<SCBook.size();++j){
+				if(slll.get(i).getBook()!=SCBook.get(j)){
+					java.util.Date date = new Date();
+					dao.addShoppingList(1l, dao.getShoppingCartbyUser(SLUser), date, SCBook.get(j));
+				}else{
+					System.out.println("this book has been added.");
+				}
+			}	
+		}
+			
+		return "ShoppingCart";
+	}
+	
+
+	private Set<Favorite> fav=new HashSet<Favorite>();
+	private Book favbook;
+	
+	public void addtofav(){
+		HttpSession se = ServletActionContext.getRequest().getSession(true);
+		UserManagerDao udao = new UserManagerDaoImpl();
+		SLUser = (UserInfo) se.getAttribute("user");
+		fav = SLUser.getFav();
+		Favorite fa = new Favorite();
+		
+		Date d = new Date();
+		fa.setBook(SLBook);
+		fa.setFavDate(d);
+		fa.setUser(SLUser);
+	
+		if(fav==null){
+			SLUser.setFav(fav);
+		}
+		fav.add(fa);
+		udao.save(SLUser);
+		return;	
+	}
+	
+	public List<ShoppingList> getSll() {
+		return sll;
+	}
+
+	public void setSll(List<ShoppingList> sll) {
+		this.sll = sll;
+	}
+
+	public List<Book> getSCBook() {
+		return SCBook;
+	}
+
+	public void setSCBook(List<Book> sCBook) {
+		SCBook = sCBook;
+	}
+
+	public Book getSLBook1() {
+		return SLBook1;
+	}
+
+	public void setSLBook1(Book sLBook1) {
+		SLBook1 = sLBook1;
+	}
+
+	public Book getSLBook2() {
+		return SLBook2;
+	}
+
+	public void setSLBook2(Book sLBook2) {
+		SLBook2 = sLBook2;
+	}
+
+
+	public Book getSLBook() {
+		return SLBook;
+	}
+
+
+	public void setSLBook(Book sLBook) {
+		SLBook = sLBook;
+	}
+
+
+	public UserInfo getSLUser() {
+		return SLUser;
+	}
+
+
+	public void setSLUser(UserInfo sLUser) {
+		SLUser = sLUser;
+	}
+
+
+	public float getSumprice() {
+		return sumprice;
+	}
+
+
+	public void setSumprice(float sumprice) {
+		this.sumprice = sumprice;
+	}
+
+
+	public List<Long> getBnumber() {
+		return Bnumber;
+	}
+
+
+	public void setBnumber(List<Long> bnumber) {
+		Bnumber = bnumber;
+	}
+
+
+	public List<Long> getBidl() {
+		return bidl;
+	}
+
+
+	public void setBidl(List<Long> bidl) {
+		this.bidl = bidl;
+	}
+
+
+	public static String[] getBookid() {
+		return bookid;
+	}
+
+
+	public static void setBookid(String[] bookid) {
+		ShoppingManageAction.bookid = bookid;
+	}
+
+
+	public Long getBid() {
+		return bid;
+	}
+
+
+	public void setBid(Long bid) {
+		this.bid = bid;
+	}
+
+
+	public Set<Favorite> getFav() {
+		return fav;
+	}
+
+
+	public void setFav(Set<Favorite> fav) {
+		this.fav = fav;
+	}
+
+
+	public Book getFavbook() {
+		return favbook;
+	}
+
+
+	public void setFavbook(Book favbook) {
+		this.favbook = favbook;
+	}
+
+
+
+
+
+}

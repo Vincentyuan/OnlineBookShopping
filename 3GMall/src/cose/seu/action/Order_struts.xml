@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--include file="cose/seu/action/Home-structs2.xml"></include-->
+	<constant name="structs.custom.i18n.resources" value="mess"/>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="ordering" extends="struts-default">
+		<action name="load" class="cose.seu.action.OrderingAction" method="load">
+			<result name="success">ordering.jsp</result>
+			<result name="error">home.action</result>
+			<result name="tologin">log.jsp</result>
+		</action>
+		<action name="submit" class="cose.seu.action.OrderingAction" method="submit">
+		    <result name="success" type="redirect">defray.action?ooid=${order.ordid}</result>
+		</action>
+		<action name="giveUp" class="cose.seu.action.OrderingAction" method="giveUp">
+		    <result name="success">ordering.jsp</result>
+		</action>
+		<action name="settleAccount" class="cose.seu.action.OrderingAction" method="settleAccount">
+		    <result name="success">ordering.jsp</result>
+		    <result name="tologin">log.jsp</result>
+		</action>
+		<action name="defray" class="cose.seu.action.DefrayAction" method="defray">
+		    <result name="success">defray.jsp</result>
+		</action>
+		<action name="showOrder" class="cose.seu.action.ShowOrderAction" method="showOrder">
+		    <result name="success">orderInfo.jsp</result>
+		</action>		
+	</package>
+</struts>    
+
+

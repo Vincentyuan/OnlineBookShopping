@@ -1,0 +1,132 @@
+package cose.seu.action;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
+
+import cose.seu.dao.CreditDao;
+import cose.seu.dao.UserManagerDao;
+import cose.seu.dao.impl.CreditDaoImpl;
+import cose.seu.dao.impl.UserManagerDaoImpl;
+import cose.seu.entity.Credit;
+import cose.seu.entity.UserInfo;
+
+@SuppressWarnings("serial")
+public class CreditEditAction extends ActionSupport implements Action{
+	/**
+	 * 
+	 */
+	private long CCID;
+	private String tip;
+	private Credit credit;	
+	private UserManagerDao userdao=new UserManagerDaoImpl();
+	private UserInfo userinfo=userdao.findById((long)240);
+	private List<Credit> creditlist=new ArrayList<Credit>(userinfo.getCreditNumber());
+	private CreditDao creditdao=new CreditDaoImpl();
+	public long getCCID() {
+		return CCID;
+	}
+	public void setCCID(long cCID) {
+		CCID = cCID;
+	}
+
+	public String getTip() {
+		return tip;
+	}
+	public void setTip(String tip) {
+		this.tip = tip;
+	}
+	public Credit getCredit() {
+		return credit;
+	}
+	public void setCredit(Credit credit) {
+		this.credit = credit;
+	}
+	public UserInfo getUserinfo() {
+		return userinfo;
+	}
+	public void setUserinfo(UserInfo userinfo) {
+		this.userinfo = userinfo;
+	}
+	public List<Credit> getCreditlist() {
+		return creditlist;
+	}
+	public void setCreditlist(List<Credit> creditlist) {
+		this.creditlist = creditlist;
+	}
+	public UserManagerDao getUserdao() {
+		return userdao;
+	}
+	public void setUserdao(UserManagerDao userdao) {
+		this.userdao = userdao;
+	}
+	//到列表及修改页面
+	public String list(){
+		System.out.println(userdao.findById((long)240).getUID());
+		creditlist=new ArrayList<Credit>(userdao.findById((long) 240).getCreditNumber());
+		System.out.println("daf");
+		
+		return "Credit";	
+	}
+	//到添加页面
+	//添加方法
+	public String add(){
+		System.out.println("yesy");
+		//credit=new Credit();
+		System.out.println("yes");
+		credit.setUser(userinfo);
+		creditlist.add(credit);
+		Set<Credit> creditset=new HashSet<Credit>();
+		creditset.addAll(creditlist);
+		System.out.println(creditlist);
+		userinfo.setCreditNumber(creditset);
+		userdao.save(userinfo);
+		return "toCredit";
+	}
+	//到更新页面
+	public String toUpdate(){
+		
+		System.out.println("update creNumber:"+credit.getCreNumber());
+		return "info";
+	}
+	//更新方法
+	public String update(){
+		credit=creditdao.findById(CCID);
+		System.out.println(credit);
+		creditlist.remove(credit);
+		Set<Credit> creditset=new HashSet<Credit>();
+		creditset.addAll(creditlist);
+		System.out.println(creditlist);
+		userinfo.setCreditNumber(creditset);
+		userdao.save(userinfo);
+		creditdao.delete(CCID);
+		System.out.println(credit);
+		//ServletActionContext.getRequest().getSession().setAttribute("credit", credit);
+	
+		return "toCredit";
+	}
+	
+	//删除方法
+	public String delete(){
+		System.out.println("hello");
+		credit=creditdao.findById(CCID);
+		creditlist.remove(credit);
+		Set<Credit> creditset=new HashSet<Credit>();
+		creditset.addAll(creditlist);
+		System.out.println(creditlist);
+		userinfo.setCreditNumber(creditset);
+		userdao.save(userinfo);
+		creditdao.delete(CCID);
+		System.out.println("del creNumber:"+credit.getCreNumber());
+		System.out.println("dsafds");
+		return "toCredit";
+	}
+
+
+}

@@ -1,0 +1,79 @@
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*,cose.seu.action.*" errorPage="" pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+　<!--[if lt IE 9]>
+　　　　<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+　　<![endif]-->
+
+<title>3G猫图书交易平台</title>
+<script src="js/jquery.js"></script>
+<link href="css/style.css" type="text/css" rel="stylesheet">
+
+</head>
+
+<body>
+	<div>
+		
+        	<table width="920">
+            	<tr>
+                	<td width="312">
+                    	<img src="ima/b2.png" width="216" height="295" />
+                    </td>
+                    <td width="596"><p>${bok.bName}</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>价格:￥${bok.price} &nbsp;&nbsp;&nbsp;折扣:9.5折 </p>
+                    <p>&nbsp;</p>
+                    <p>顾客评分:90&nbsp;&nbsp;&nbsp; 已有251本售出</p>
+                    <p>&nbsp;</p>
+                    <hr />
+                    <p>&nbsp;</p>
+                    <p>作 者:${bok.author}</p>
+                    <p>&nbsp;</p>
+                    <p>出版社:${bok.publisher}</p>
+                    <p>&nbsp;</p>
+                    <p>出版时间:${bok.pTime}</p>
+                    <p>&nbsp;</p>
+                    <p>简介:</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>我要买:<input style="width:30px;" type="text" name="bn" />本</p>
+                    <p>&nbsp;</p>
+                    <p><input name="" type="image" src="ima/goumaoi.png" width="101" height="93" onclick="window.location.href='load.action?bid=${bok.BID}&bookNumber=bn'" />
+                    <input style="position:relative; left:20px;" type="image" src="ima/jiarugouwuche.png" onclick="window.location.href='add.action?SLB=${bok.BID}'" />
+                    <input style="position:relative; left:40px;" type="image" src="ima/jiarushoucangjia.png" />
+                    </p>
+                    </td>
+                </tr>
+            </table>
+		
+	</div>
+    <div>
+      <p><img src="ima/tongleituijian.png" width="100%" /></p>
+    	
+    </div>
+<div style="background:url(ima/yonghupingjia.png); background-repeat:no-repeat; height:50px;"><p class="hh">&nbsp;&nbsp;用户评价</p>
+    	
+    </div>
+    <div class="f">
+    	<table width="863">
+        	<tr>
+            	<td valign="top" width="623">看不懂不知道好不好。</td>
+                <td width="35">
+                	<img src="ima/shuxian.png" />
+                </td>
+                <td width="189">用户名
+                </td>
+            </tr>
+        </table>
+</div>
+<hr />
+
+</body>
+</html>

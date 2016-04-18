@@ -1,0 +1,20 @@
+package cose.seu.test;
+
+import cose.seu.dao.ShoppingCartDao;
+import cose.seu.dao.impl.ShoppingCartDaoimpl;
+
+public class ShoppingCartDaoTest {
+
+	public static void main(String[] args) {
+		//add();
+		login();
+
+	}
+	private static void login() {
+		ShoppingCartDao dao=new ShoppingCartDaoimpl();
+		dao.SCAdd(12);
+		
+		System.out.println(dao.getShoppingCart(12).getSCID());
+		
+	}
+}

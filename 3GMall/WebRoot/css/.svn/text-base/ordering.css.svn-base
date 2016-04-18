@@ -1,0 +1,377 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+#container1 {
+	position:relative;
+    left:0px;
+    top:0px;
+    width:auto;
+    height:auto;
+}
+#container2 {
+	position:relative;
+    left:0px;
+    top:auto;
+    width:auto;
+    height:auto;
+}
+#container3 {
+	position:relative;
+    left:0px;
+    top:auto;
+    width:auto;
+    height:auto;
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+#title {
+    position:absolute;
+    left:-375px;
+    top:0px;
+    width:1454px;
+    height:74px;
+    background-image:url(../ima/title1.png);
+}
+#subtitle1 {
+    position:absolute;
+    left:203px;
+    top:100px;
+    width:145px;
+    height:24px;
+    font-family:Î¢ÈíÑÅºÚ;
+	font-size:28px;
+	font-weight:bold;
+	font-style:normal;
+    text-decoration:none;
+    color:#333333;
+}
+#subtitle2 {
+    position:absolute;
+    left:203px;
+    top:310px;
+    width:261px;
+    height:24px;
+    font-family:Î¢ÈíÑÅºÚ;
+	font-size:28px;
+	font-weight:bold;
+	font-style:normal;
+    text-decoration:none;
+    color:#333333;
+}
+#subtitle3 {
+    position:absolute;
+    left:203px;
+    top:368px;
+    width:auto;
+    height:24px;
+    font-family:Î¢ÈíÑÅºÚ;
+	font-size:24px;
+	font-weight:normal;
+	font-style:normal;
+    text-decoration:none;
+    color:#333333;
+}
+#parting1 {
+    position:absolute;
+    left:126px;
+    top:110px;
+    width:61px;
+    height:10px;
+    background-image:url(../ima/line1.png);
+}
+#parting2 {
+    position:absolute;
+    left:126px;
+    top:320px;
+    width:61px;
+    height:10px;
+    background-image:url(../ima/line2.png);
+}
+#parting3 {
+    position:relative;
+    left:744px;
+    top:233px;
+    width:212px;
+    height:10px;
+    background-image:url(../ima/line3.png);
+}
+#parting4 {
+    position:absolute;
+    left:648px;
+    top:813px;
+    width:418px;
+    height:10px;
+    background-image:url(../ima/line4.png);
+}
+#reciveName {
+    position:absolute;
+    left:262px;
+    top:425px;
+    width:104px;
+    height:22px;
+    font-family:Î¢ÈíÑÅºÚ;
+	font-size:24px;
+	font-weight:normal;
+	font-style:normal;
+    text-decoration:none;
+    color:#333333;
+}
+#phoneNum {
+    position:absolute;
+    left:488px;
+    top:425px;
+    width:102px;
+    height:22px;
+    font-family:Î¢ÈíÑÅºÚ;
+	font-size:24px;
+	font-weight:normal;
+	font-style:normal;
+    text-decoration:none;
+    color:#333333;
+}
+#reciveAddr {
+    position:absolute;
+    left:262px;
+    top:497px;
+    width:104px;
+    height:22px;
+    font-family:Î¢ÈíÑÅºÚ;
+	font-size:24px;
+	font-weight:normal;
+	font-style:normal;
+    text-decoration:none;
+    color:#333333;
+}
+#payment {
+    position:absolute;
+    left:262px;
+    top:660px;
+    width:165px;
+    height:22px;
+    font-family:Î¢ÈíÑÅºÚ;
+	font-size:24px;
+	font-weight:normal;
+	font-style:normal;
+    text-decoration:none;
+    color:#333333;
+}
+#invoiceTitle {
+    position:absolute;
+    left:262px;
+    top:735px;
+    width:265px;
+    height:22px;
+    font-family:Î¢ÈíÑÅºÚ;
+	font-size:24px;
+	font-weight:normal;
+	font-style:normal;
+    text-decoration:none;
+    color:#333333;
+}
+#nameTxt {
+    position:absolute;
+    left:326px;
+    top:425px;
+    width:108px;
+    height:46px;
+    text-align: left;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+}
+#phoneTxt {
+    position:absolute;
+    left:550px;
+    top:425px;
+    width:208px;
+    height:46px;
+    text-align: left;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;    
+}
+#province {
+    position:absolute;
+    left:326px;
+    top:497px;
+    width:120px;
+    height:42px;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;   
+}
+#city {
+    position:absolute;
+    left:482px;
+    top:497px;
+    width:120px;
+    height:42px;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;   
+}
+#area {
+    position:absolute;
+    left:638px;
+    top:497px;
+    width:120px;
+    height:42px;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;   
+}
+#detaliedAddr {
+    position:absolute;
+    left:326px;
+    top:550px;
+    width:432px;
+    height:84px;
+    text-align: left;;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none; 
+}
+#paymentWay {
+    position:absolute;
+    left:370px;
+    top:660px;
+    width:388px;
+    height:42px;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;    
+}
+#invoiceTxt {
+    position:absolute;
+    left:370px;
+    top:735px;
+    width:388px;
+    height:46px;
+    text-align: left;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;    
+}
+#table {
+    position:relative;
+    left:200px;
+    top:160px;
+    width:auto;
+    height:auto;
+    overflow:visible;
+}
+
+.th{
+    position:relative;
+    left:auto;
+    top:auto;
+    width:auto;
+    height:auto;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 20px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    text-align:left;
+}
+
+
+#receiver{
+	position:absolute; 
+	left:400px;
+	top:370px;
+	width:auto; 
+	height:auto;
+	font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none; 
+}
+#place{
+	position:relative;
+    left:auto;
+    top:auto;
+    width:auto;
+    height:auto;
+}
+
+#total {
+    position:relative;
+    left:774px;
+    top:246px;
+    width:200px;
+    height:22px;
+    font-family:'Î¢ÈíÑÅºÚ';
+    font-size: 22px;
+    color:#000000;
+    font-style:normal;
+    font-weight:bold;
+    text-decoration:none;
+}
+#submit {
+    position:absolute;
+    left:672px;
+    top:840px;
+    width:160px;
+    height:160px;
+    border:0px;
+    background-image:url(../ima/submit.png);
+}
+#giveUp {
+    position:absolute;
+    left:888px;
+    top:840px;
+    width:160px;
+    height:160px;
+    border:0px;
+    background-image:url(../ima/giveUp.png);
+}
+
+
+
+
+

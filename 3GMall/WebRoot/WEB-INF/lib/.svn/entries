@@ -1,0 +1,41 @@
+8
+
+dir
+69
+https://lq:8443/svn/3GMall/3GMall/WebRoot/WEB-INF/lib
+https://lq:8443/svn/3GMall
+
+
+
+2013-09-02T10:45:44.942504Z
+1
+lq
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+c27c5132-2931-f04a-a7f8-4937bdb6b878
+
+ojdbc14.jar
+file
+
+
+
+
+2013-09-02T12:01:22.081000Z
+219e4c6f2ba5d066fedfd78697847054
+2013-09-02T10:45:44.942504Z
+1
+lq
+has-props
+

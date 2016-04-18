@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+  <package name="cose.seu.action.CreditEditAction" extends="struts-default">
+        <action name="list" class="cose.seu.action.CreditEditAction" method="list">
+            <result name="Credit">Credit.jsp</result>
+        </action>
+        <action name="toadd" class="cose.seu.action.CreditEditAction" method="toadd">
+            <result name="info">info.jsp</result>
+        </action>
+        <action name="add" class="cose.seu.action.CreditEditAction" method="add">
+            <result name="toCredit">Credit.jsp</result>
+        </action>
+        <action name="update" class="cose.seu.action.CreditEditAction" method="update">
+            <result name="toCredit" type="redirect">info.jsp</result>
+        </action>
+        <action name="delete" class="cose.seu.action.CreditEditAction" method="delete">
+            <result name="toCredit" type="redirect">list.action</result>
+        </action>
+    </package>
+
+
+</struts>
